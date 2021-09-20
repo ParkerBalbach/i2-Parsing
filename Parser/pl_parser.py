@@ -42,7 +42,7 @@ class Parser(object):
         if semi.lex() == ';':
             self.match(';')
             block = self.parseBlock()
-        
+            
         return NodeBlock(stmt, block)
 
     def parse(self, program):
