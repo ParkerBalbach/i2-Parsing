@@ -31,5 +31,19 @@ class NodeAssn(Node):
         self.id = id
         self.num = num
 
+class NodeStmt(NodeAssn):
+
+    def __init__(self, NodeAssn):
+        super(NodeStmt).__init__()
+        self.NodAssn = NodeAssn
+
+
+class NodeBlock(NodeStmt):
+
+    def __init__(self, NodeStmt):
+        super(NodeBlock).__init__()
+        self.NodeStmt = NodeStmt
+       
+
 
 

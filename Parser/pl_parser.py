@@ -22,10 +22,29 @@ class Parser(object):
         """ generated source for method pos """
         return self.scanner.position()
 
+    def parseAssn(self):
+        _id = self.curr()
+        self.match('id')
+        self.match('=')
+        num = self.curr()
+        self.match('num')
+        return NodeAssn(_id.lex, num.lex)
+
+    
+    def parseStmt(self):
+        assn = self.parseAssn()
+        return NodeStmt(assn)
+    
+    def parseBlock(self):
+        stmt = self.parseStmt()
+        semi = self.curr()
+        self.match(';')
+        return NodeBlock(stmt)
+
     def parse(self, program):
         """ generated source for method parse """
         if program == '': return None
         self.scanner = Scanner(program)
         self.scanner.next()
-        return None
+        return self.parseBlock()
 
