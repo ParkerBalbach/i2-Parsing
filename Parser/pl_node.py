@@ -43,6 +43,7 @@ class NodeBlock(NodeStmt):
     def __init__(self, NodeStmt):
         super(NodeBlock).__init__()
         self.NodeStmt = NodeStmt
+        
        
 
 
