@@ -33,16 +33,19 @@ class NodeAssn(Node):
 
 class NodeStmt(NodeAssn):
 
-    def __init__(self, NodeAssn):
+    def __init__(self, assn):
         super(NodeStmt).__init__()
-        self.NodAssn = NodeAssn
+        self.assn = assn
 
 
 class NodeBlock(NodeStmt):
 
-    def __init__(self, NodeStmt):
+    def __init__(self, stmt, block):
         super(NodeBlock).__init__()
-        self.NodeStmt = NodeStmt
+        self.stmt = stmt
+        self.block = block
+
+
         
        
 

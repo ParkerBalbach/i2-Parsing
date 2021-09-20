@@ -28,7 +28,7 @@ class Parser(object):
         self.match('=')
         num = self.curr()
         self.match('num')
-        return NodeAssn(_id.lex, num.lex)
+        return NodeAssn(_id.lex(), num.lex())
 
     
     def parseStmt(self):
@@ -38,8 +38,12 @@ class Parser(object):
     def parseBlock(self):
         stmt = self.parseStmt()
         semi = self.curr()
-        self.match(';')
-        return NodeBlock(stmt)
+        block = None
+        if semi.lex() == ';':
+            self.match(';')
+            block = self.parseBlock()
+        
+        return NodeBlock(stmt, block)
 
     def parse(self, program):
         """ generated source for method parse """
